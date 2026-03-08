@@ -1,45 +1,14 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=21791587)
-# PA6 - Cluster proximity playlist
-
-## Motivation
-
-In PA5, you implemented K-means clustering to group similar songs based on normalized user ratings (after filling in missing ratings and then re-normalizing). Now, we'll use these clusters to generate personalized recommendations for new users of your streaming platform! When a user tells us they like specific songs, we can quickly find other songs they might enjoy by leveraging song proximity within clusters. The goal is to make a playlist of up to 20 songs that our user might like.
-
-_Notice: This assignment has shorter instructions than usual, which can be a common scenario in real-world software development. While the assignment is a quite simple extension of PA5, your challenge is to come up with your own implementation tasks to generate the corresponding output as seen in the input/output examples._
+# Song Recommendation application
 
 ## Input Format
 
-Your program must accept 5 or more command-line arguments, with K being the number of user-provided songs as initial centroids. 
+Your program must accept 5 or more command-line arguments. 
 
-`gradle run -q --args="'<input_file>' '<output_file>' '-s' 'K' '<liked_song_name1>' '<liked_song_name2>' ..."`
-
-This means for our clustering process, the initialization uses the first `K` user-provided songs as initial centroids. The rest of the clustering process is the same as in PA5 (10 iterations, Euclidean distance).
-
-## Playlist Generation
-After clustering, find the (up to) 20 songs that are closest to all our user-provided songs (not the `K` first user-provided songs). Follow the provided pseudo-code algorithm. This algorithm represents the idea of the program conceptually, but depending on your previous code structure you may have to change the details of some steps entirely.
+`gradle run -q --args="..."`
 
 
-```
-# For ALL user-provided songs (including those beyond first K)
-For each user_liked_song s in user_provided_songs:
-	For each song t in the same cluster as s:
-	    If (t != s)
-			Let d = 1.0 / euclidean_distance(t, s)
-			Keep best (max) d for each candidate song
-Create list of all candidate songs (excluding user-provided songs) with their best distances
-Sort list by d, write the (up to) top 20 songs to output file 
-```
 
-## Error Handling
 
-- All errors from PA5 still apply
-- If argument -p is present for playlist generation throw an error in these cases:
-	- Fewer than 5 arguments present
-	- K < 1
-	- Fewer user-provided songs than K
-	- User-provided song not found
-	- Duplicate song titles in input
-	- Pre-processing leaves fewer than K+1 songs
 
 # Example Input/Output
 
